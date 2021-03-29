@@ -13,6 +13,7 @@
         <th scope="col">#</th>
         <th scope="col">Comments</th>
         <th scope="col">Likes</th>
+        <th scope="col">Actions</th>
       </tr>
     </thead>
     <tbody>
@@ -21,17 +22,23 @@
             <th scope="row">{{$comment->id}}</th>
             <td> {{$comment->body}}</td>
             <td> {{$comment->likes}}</td>
+            <td><form action="{{route('comments.destroy',compact('comment'))}}" method="POST">
+                @csrf
+                @method('DELETE')
+            <button class="btn btn-danger" type="submit">Delete</button></form><td>
           </tr>
         @endforeach
 
     </tbody>
   </table>
   <div class="reply d-flex justify-content-center">
-  <form action="/api/fakecomments/{{$post->id}}" method="POST">
+  {{-- <form action="/api/fakecomments/{{$post->id}}" method="POST"> --}}
+    {{-- <form action="/comments/{{$post->id}}" method="POST"> --}}
+  <form action="{{route('mycreate',['id'=>$post->id])}}" method="POST">
     @csrf
     @method('POST')
     <textarea style="display:block;" name="body" id="" cols="70" rows="10"></textarea>
-    <button class="float-right" type="submit">Invia Commento</button>
+    <button class="float-right btn btn-primary" type="submit">Invia Commento</button>
 </form>
 </div>
 @endsection

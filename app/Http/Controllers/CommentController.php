@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Post;
 use App\Comment;
+use Illuminate\Http\Request;
+
 class CommentController extends Controller
 {
     /**
@@ -13,8 +15,8 @@ class CommentController extends Controller
      */
     public function index()
     {
-        $comments=Comment::all();
-        return view('comments.index',compact('comments'));
+        $comments = Comment::all();
+        return view('comments.index', compact('comments'));
     }
 
     /**
@@ -35,11 +37,11 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
-        $data=$request->all();
-        $comment=new Comment();
+        $data = $request->all();
+        $comment = new Comment();
         $comment->fill($data);
         $comment->save();
-        return redirect()->route('comments.show',compact('comment'));
+        return redirect()->route('comments.show', compact('comment'));
     }
 
     /**
@@ -50,7 +52,7 @@ class CommentController extends Controller
      */
     public function show(Comment $comment)
     {
-        return view('comments.show',compact('comment'));
+        return view('comments.show', compact('comment'));
     }
 
     /**
@@ -61,7 +63,7 @@ class CommentController extends Controller
      */
     public function edit(Comment $comment)
     {
-      return view('comments.edit',compact('comment'));
+        return view('comments.edit', compact('comment'));
     }
 
     /**
@@ -73,9 +75,9 @@ class CommentController extends Controller
      */
     public function update(Request $request, Comment $comment)
     {
-       $data=$request->all();
-       $comment->update($data);
-       return redirect()->route('comments.show',compact('comment'));
+        $data = $request->all();
+        $comment->update($data);
+        return redirect()->route('comments.show', compact('comment'));
     }
 
     /**
@@ -87,6 +89,21 @@ class CommentController extends Controller
     public function destroy(Comment $comment)
     {
         $comment->delete();
-        return redirect()->route('comments.index');
+        return redirect()->route('posts.show', ['post' => $comment->post]);
+    }
+    public function mycreate($id = null)
+    {
+        if ($id == null || $id < 0 || $id > count(Post::all())) {
+            abort(404);
+        }
+        else {
+            $post = Post::find($id);
+            $comment = new Comment();
+            $comment->body = $_POST['body'];
+            // $comment->likes= '1';
+            $post->comments()->save($comment);
+            // return response()->json($comment);
+            return redirect()->route('posts.show', compact('post'));
+        }
     }
 }

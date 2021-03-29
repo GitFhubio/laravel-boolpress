@@ -73,6 +73,9 @@
         </nav>
 
         <main class="py-4">
+            <header style="background-image: url('https://blog.libero.it/wp/esistereadesso/wp-content/uploads/sites/17903/2018/06/pastel-confetti-blog-header.png')">
+                <h1 style="padding:20px;">Il Blog</h1>
+            </header>
             @yield('content')
         </main>
     </div>

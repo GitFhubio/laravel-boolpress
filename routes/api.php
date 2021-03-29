@@ -20,3 +20,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::get('fakecomments/{id}','Api\CommentsController@create');
 Route::post('fakecomments/{id}','Api\CommentsController@create');
+
