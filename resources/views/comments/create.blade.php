@@ -1,4 +1,4 @@
-@extends('layouts.app')
+{{-- @extends('layouts.app')
 @section('content')
 <form action="{{route('comments.store')}}" method="post">
     @csrf
@@ -10,4 +10,4 @@ Likes
 <input name="likes" type="number">
 <button type="submit">Invia</button>
 </form>
-@endsection
+@endsection --}}

@@ -26,4 +26,10 @@
 
     </tbody>
   </table>
+  <form action="/api/fakecomments/{{$post->id}}" method="POST">
+    @csrf
+    @method('POST')
+    <textarea name="body" id="" cols="30" rows="10"></textarea>
+    <button type="submit">Invia Commento</button>
+</form>
 @endsection
