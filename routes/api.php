@@ -18,5 +18,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('fakecomments/{id}','Api\CommentsController@create')->name('myapi');
-Route::post('fakecomments/{id}','Api\CommentsController@create')->name('myapi');
+Route::get('fakecomments/{id}','Api\CommentsController@create');
+Route::post('fakecomments/{id}','Api\CommentsController@create');
