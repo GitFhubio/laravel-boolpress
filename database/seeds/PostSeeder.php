@@ -4,8 +4,8 @@ use Illuminate\Database\Seeder;
 use Faker\Generator as Faker;
 use App\Author;
 use App\AuthorDetails;
-use App\Comment;
 use App\Post;
+use App\Comment;
 
 class PostSeeder extends Seeder
 {
@@ -33,15 +33,15 @@ class PostSeeder extends Seeder
                 $post=new Post();
                 $post->title= $faker->text(20);
                 $post->body= $faker->text(1000);
-
-                // for ($v=0;$v < rand(2, 5) ; $v++) {
-                //     $comment=new Comment();
-                //     $comment->body= $faker->text(20);
-                //     $comment->likes= rand(0,1000);
-                //     $post->comments()->save($comment);
-                // }
-
                 $author->posts()->save($post);
+                for ($v=0;$v < rand(2, 5) ; $v++) {
+                    $comment=new Comment();
+                    $comment->body= $faker->text(20);
+                    $comment->likes= rand(0,1000);
+                    $post->comments()->save($comment);
+                }
+
+
             }
 
             //$authorDetail->author_id=$author->id;
