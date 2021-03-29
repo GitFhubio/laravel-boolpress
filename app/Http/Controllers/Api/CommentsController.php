@@ -9,14 +9,15 @@ use Illuminate\Http\Request;
 class CommentsController extends Controller
 {
     public function create($id=null){
-    if($id==null){
+    if($id==null || $id<0 || $id>count(Post::all())){
         abort(404);
     }else{
     $post=Post::find($id);
     $comment=new Comment();
     $comment->body=$_POST['body'];
-    $comment->likes= '1';
+    // $comment->likes= '1';
     $post->comments()->save($comment);
+    return redirect()->route('posts.show',compact('post'));
     }
 }
 }
