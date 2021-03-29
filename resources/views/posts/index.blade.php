@@ -17,7 +17,7 @@
             <td>{{$post->title}}</td>
             <td>{{$post->body}}</td>
             <td>{{$post->author->name}} {{$post->author->surname}}</td>
-            <td><a class="btn btn-primary" href="{{route('posts.show',compact('post'))}}"></a></td>
+            <td><a class="btn btn-primary" href="{{route('posts.show',compact('post'))}}">Show Comments</a></td>
           </tr>
         @endforeach
 
