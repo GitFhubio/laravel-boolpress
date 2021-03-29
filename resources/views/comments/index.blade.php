@@ -5,6 +5,7 @@
 @endforeach --}}
 @extends('layouts.app')
 @section('content')
+{{-- <a class="btn btn-primary" href="{{route('comments.create')}}">Crea</a> --}}
 <table class="table table-striped">
     <thead>
       <tr>
@@ -22,7 +23,7 @@
             <td>{{$comment->post->title}}</td>
             <td> {{$comment->body}}</td>
             <td> {{$comment->likes}}</td>
-            <td><a class="btn btn-primary" href="{{route('posts.show',['post'=>$comment->post])}}"></a></td>
+            <td><a class="btn btn-primary" href="{{route('posts.show',['post'=>$comment->post])}}">Original Post</a></td>
           </tr>
         @endforeach
 

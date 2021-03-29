@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Comment extends Model
 {
+    protected $fillable=['body','likes'];
     public function post(){
         return $this->belongsTo('App\Post');
     }

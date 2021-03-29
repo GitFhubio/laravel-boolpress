@@ -24,7 +24,7 @@ class CommentController extends Controller
      */
     public function create()
     {
-        //
+        return view('comments.create');
     }
 
     /**
@@ -35,7 +35,11 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data=$request->all();
+        $comment=new Comment();
+        $comment->fill($data);
+        $comment->save();
+        return redirect()->route('comments.show',compact('comment'));
     }
 
     /**
@@ -44,9 +48,9 @@ class CommentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Comment $comment)
     {
-        //
+        return view('comments.show',compact('comment'));
     }
 
     /**
@@ -55,9 +59,9 @@ class CommentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Comment $comment)
     {
-        //
+      return view('comments.edit',compact('comment'));
     }
 
     /**
@@ -67,9 +71,11 @@ class CommentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Comment $comment)
     {
-        //
+       $data=$request->all();
+       $comment->update($data);
+       return redirect()->route('comments.show',compact('comment'));
     }
 
     /**
@@ -78,8 +84,9 @@ class CommentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Comment $comment)
     {
-        //
+        $comment->delete();
+        return redirect()->route('comments.index');
     }
 }
