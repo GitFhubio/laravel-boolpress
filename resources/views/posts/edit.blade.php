@@ -18,7 +18,7 @@ $selected = $post->tags->search(function($item,$key) use ($tag){
 </div>
 <div class="form-group">
     <label for="title">Titolo</label>
-<input type="text" name="title">
+<input type="text" name="title" value="{{$post->title}} ">
 </div>
 
 <div class="form-group">
@@ -33,7 +33,7 @@ $selected = $post->tags->search(function($item,$key) use ($tag){
 {{-- ha lo stesso nome la select del metodo author() --}}
 {{-- se voglio farlo funzionare devo mettere author_id --}}
 
-<textarea class="form-control" name="body" id="" cols="30" rows="10" placeholder="Inserisci il tuo post"></textarea>
+<textarea class="form-control" name="body" cols="30" rows="10" >{{ $post->body }} </textarea>
 <button type="submit">Invia</button>
 </form>
 @endsection

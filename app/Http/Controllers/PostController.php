@@ -40,9 +40,24 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $data=$request->all();
+
+        //  dd($data);
+        $author_id=$data['author_id'];
+        $authors=Author::all();
+        // Author::where('id',$author_id)->get();
+        // dump(Author::find($author_id));
+        if(!Author::find($author_id)){
+            // dd('Questo è un check');
+            return redirect()->route('posts.index');
+            // return redirect su pagina di cortesia
+        }
+
+
         $post=new Post();
         $post->fill($data);
         $post->save();
+
+
         $tagsAll=Tag::all();
         $autotags=$data['tags'];
         // la modifica sotto serve per aggiungere tags anche se non li ho selezinati,
