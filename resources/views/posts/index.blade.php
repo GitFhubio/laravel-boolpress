@@ -22,6 +22,7 @@
             {{$tag->name}}
             @endforeach</td>
            <td><a class="btn btn-primary" href="{{route('posts.show',compact('post'))}}">Show Comments</a></td>
+           <td><a class="btn btn-success" href="{{route('posts.edit',compact('post'))}}">Edit post</a></td>
           </tr>
         @endforeach
 

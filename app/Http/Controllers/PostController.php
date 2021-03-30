@@ -76,7 +76,9 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        return view('posts.edit',compact('post'));
+        $authors=Author::all();
+        $tags=Tag::all();
+        return view('posts.edit',compact('post','authors','tags'));
     }
 
     /**
@@ -90,6 +92,14 @@ class PostController extends Controller
     {
         $data=$request->all();
         $post->update($data);
+        $tagsAll=Tag::all();
+        $autotags=$data['tags'];
+        foreach ($tagsAll as $tag) {
+        if(stripos($data['body'],$tag->name) !== false){
+          $autotags[]=$tag->id;
+        }
+    }
+        $post->tags()->sync($autotags);
         return redirect()->route('posts.show',compact('post'));
     }
 
