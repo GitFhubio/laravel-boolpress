@@ -137,10 +137,10 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-          // detach() per many to many ('belongsToMany')
+          // detach() vale per many to many ('belongsToMany')
         // $post->tags()->detach();
         // // delete() vale per one to many ('hasMany')
-        // $post->comment()->delete();
+        // $post->comments()->delete();
         // // dissociate vale per one to many ('belongsTo')
         // $post->author()->dissociate();
         $post->delete();
