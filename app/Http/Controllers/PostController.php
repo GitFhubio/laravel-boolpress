@@ -124,6 +124,7 @@ class PostController extends Controller
     //         $post->tags()->attach($data['tags']);
     //     }
     // }
+    // se qua facessi attach me li aggiungerebbe a campo gia presenti,devo fare sinc
         $post->tags()->sync($autotags);
         return redirect()->route('posts.show',compact('post'));
     }
