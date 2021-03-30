@@ -21,7 +21,7 @@
 <label for="tags[]"></label>
 <select name="tags[]" multiple>
 @foreach ($tags as $tag)
-<option value="{{$tag->id}}" {{isset($post->tags[$tag->id]) ? 'selected=selected' : ""}}>{{$tag->name}}</option>
+<option value="{{$tag->id}}" {{ count($post->tags->where('id',$tag->id))>0 ? 'selected=selected' : ""}}>{{$tag->name}}</option>
 @endforeach
 </select>
 </div>
