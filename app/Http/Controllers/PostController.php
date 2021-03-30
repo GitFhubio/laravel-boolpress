@@ -6,7 +6,7 @@ use App\Tag;
 use App\Post;
 use App\Author;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+// use Illuminate\Support\Facades\DB;
 
 class PostController extends Controller
 {
@@ -20,6 +20,9 @@ class PostController extends Controller
         // var_dump($_GET);
         $data=$request->all();
         // var_dump($data);
+        // se usavo la procedura DB::table importando facades
+        // funzionava ma poi nella vista non potevo piu usare i metodi
+        // tipo post->author() etc,è sempre meglio insistere con il modello
         // $posts=DB::table('posts')
         // ->join('authors','posts.author_id','=','authors.id')
         // ->select('posts.*','authors.name','authors.surname')
@@ -175,3 +178,10 @@ class PostController extends Controller
         return redirect()->route('posts.index');
     }
 }
+
+// alfredo dixit
+// la classe DB:: ti crea un tunnel diretto con mysql, la puoi usare come query builder e perfino metterci statement mysql
+// ma è d'obbligo, magari ti troverai in un'app molto complessa in cui devi fare query particolari che non sono coperte da Eloquent
+// ogni ORM ti permette di interrogare direttamente tramite la sintassi sql il database
+// e a volte in progetti reali sarà più conveniente fare una query scritta in sql che usare il livello di astrazione fornito dall'ORM
+// un orm copre una grossa. quantità di casi standard e non standard ma non copre la totalità delle combinazioni che puoi fare, perciò ti lascia uno spazio libero per fare query come ti pare
