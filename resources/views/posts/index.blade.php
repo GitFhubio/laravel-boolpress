@@ -1,6 +1,10 @@
 @extends('layouts.app')
 @section('content')
 
+<form action="{{route('posts.index')}}" method="GET">
+<input style="width:300px;" type="text" name="search" placeholder="Search post by title,body,author or tag">
+<button type="submit">Search post</button>
+</form>
 <a class="btn btn-primary" href="{{route('posts.create')}}">Crea un nuovo post</a>
 <table class="table table-striped">
     <thead>

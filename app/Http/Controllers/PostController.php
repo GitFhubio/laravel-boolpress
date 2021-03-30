@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Post;
 use App\Tag;
+use App\Post;
 use App\Author;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
 class PostController extends Controller
 {
     /**
@@ -13,10 +15,32 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $posts=Post::all();
-        return view('posts.index',compact('posts'));
+        // var_dump($_GET);
+        $data=$request->all();
+        // var_dump($data);
+        // $posts=DB::table('posts')
+        // ->join('authors','posts.author_id','=','authors.id')
+        // ->select('posts.*','authors.name','authors.surname')
+        // ->get();
+        //  $myposts=Post::join('authors','posts.author_id','=','authors.id')
+        //  ->select('posts.*','authors.name','authors.surname')
+        //  ->get();
+        //  dd($myposts);
+        if (empty($data['search'])) {
+            $posts=Post::all();
+        } else{
+            $posts=Post::join('authors','posts.author_id','=','authors.id')
+            ->select('posts.*','authors.name','authors.surname')
+            ->where("title","like", '%'.$data["search"].'%')
+            ->orWhere("body","like", '%'.$data["search"].'%')
+            ->orWhere("surname","like", '%'.$data["search"].'%')
+            ->get();
+
+
+        }
+        return view('posts.index', compact('posts'));
     }
 
     /**

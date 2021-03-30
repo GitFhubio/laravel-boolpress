@@ -28,3 +28,10 @@ Route::resource('comments', CommentController::class);
 Route::resource('authors', AuthorController::class);
 // Route::get('comments/{id}', 'CommentController@mycreate');
 Route::post('comments/{id}', 'CommentController@mycreate')->name('mycreate');
+
+// Route::prefix('admin')
+//     ->namespace('Admin')
+//     ->middleware('auth')
+//     ->group(function () {
+//         Route::resource('pizzas', AuthorController::class);
+//     });
