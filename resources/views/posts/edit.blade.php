@@ -8,7 +8,7 @@
         <label for="author_id">Autori</label>
     <select name="author_id" id="">
         @foreach ($authors as $author)
-        <option value="{{$author->id}}">{{$author->name}}{{$author->surname}}</option>
+        <option value="{{$author->id}}" {{$author->id==$post->author->id ? 'selected=selected' : ""}}>{{$author->name}}{{$author->surname}}</option>
         @endforeach
     </select>
 </div>
@@ -21,7 +21,7 @@
 <label for="tags[]"></label>
 <select name="tags[]" multiple>
 @foreach ($tags as $tag)
-<option value="{{$tag->id}}">{{$tag->name}}</option>
+<option value="{{$tag->id}}" {{isset($post->tags[$tag->id]) ? 'selected=selected' : ""}}>{{$tag->name}}</option>
 @endforeach
 </select>
 </div>
