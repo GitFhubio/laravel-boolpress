@@ -3,7 +3,7 @@
 use Illuminate\Database\Seeder;
 use Faker\Generator as Faker;
 use App\Author;
-use App\AuthorDetails;
+use App\AuthorDetail;
 use App\Post;
 use App\Comment;
 
@@ -23,7 +23,7 @@ class PostSeeder extends Seeder
             $author->email= $faker->email();
             $author->save();
 
-            $authorDetail= new AuthorDetails();
+            $authorDetail= new AuthorDetail();
             $authorDetail->bio=$faker->text();
             $authorDetail->website=$faker->url();
             $authorDetail->pic= 'https://picsum.photos/seed/'.rand(0, 1000).'/200/300';

@@ -24,5 +24,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('posts', PostController::class);
 
 Route::resource('comments', CommentController::class);
+
+Route::resource('authors', AuthorController::class);
 // Route::get('comments/{id}', 'CommentController@mycreate');
 Route::post('comments/{id}', 'CommentController@mycreate')->name('mycreate');

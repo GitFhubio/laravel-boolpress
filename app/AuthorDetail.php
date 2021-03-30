@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class AuthorDetails extends Model
+class AuthorDetail extends Model
 {
     public function author(){
         return $this->belongsTo('App\Author');
