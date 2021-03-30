@@ -1,5 +1,7 @@
 @extends('layouts.app')
 @section('content')
+
+<a class="btn btn-primary" href="{{route('posts.create')}}">Crea un nuovo post</a>
 <table class="table table-striped">
     <thead>
       <tr>

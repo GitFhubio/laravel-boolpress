@@ -107,13 +107,23 @@ class PostController extends Controller
     {
         $data=$request->all();
         $post->update($data);
+        // l'update come store /save,dopo faccio l'attach
         $tagsAll=Tag::all();
         $autotags=$data['tags'];
+        // questo snippet ci serve di nuovo se vogliamo prendere tag dal body
         foreach ($tagsAll as $tag) {
         if(stripos($data['body'],$tag->name) !== false){
           $autotags[]=$tag->id;
         }
     }
+    // oppure
+    // foreach($data['tags'] as $tag) {
+    //     if ($tag === null) {
+    //         $post->tags()->detach();
+    //     } else {
+    //         $post->tags()->attach($data['tags']);
+    //     }
+    // }
         $post->tags()->sync($autotags);
         return redirect()->route('posts.show',compact('post'));
     }
@@ -126,7 +136,14 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
+          // detach() per many to many ('belongsToMany')
+        // $post->tags()->detach();
+        // // delete() vale per one to many ('hasMany')
+        // $post->comment()->delete();
+        // // dissociate vale per one to many ('belongsTo')
+        // $post->author()->dissociate();
         $post->delete();
+        // oppure come ho fatto metto la on delete cascade nelle tabelle
         return redirect()->route('posts.index');
     }
 }
