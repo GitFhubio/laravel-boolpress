@@ -7,6 +7,7 @@
         <th scope="col">Title</th>
         <th scope="col">Body</th>
         <th scope="col">Author</th>
+        <th scope="col">Tags</th>
         <th scope="col">Show</th>
       </tr>
     </thead>
@@ -17,7 +18,10 @@
             <td>{{$post->title}}</td>
             <td>{{$post->body}}</td>
             <td>{{$post->author->name}} {{$post->author->surname}}</td>
-            <td><a class="btn btn-primary" href="{{route('posts.show',compact('post'))}}">Show Comments</a></td>
+            <td> @foreach ($post->tags as $tag)
+            {{$tag->name}}
+            @endforeach</td>
+           <td><a class="btn btn-primary" href="{{route('posts.show',compact('post'))}}">Show Comments</a></td>
           </tr>
         @endforeach
 
