@@ -18,7 +18,7 @@
 </div>
 
 <div class="form-group">
-<label for="tags[]"></label>
+<label for="tags[]">Tags</label>
 <select name="tags[]" multiple>
 @foreach ($tags as $tag)
 <option value="{{$tag->id}}">{{$tag->name}}</option>
@@ -28,7 +28,7 @@
 {{-- ha lo stesso nome la select del metodo author() --}}
 {{-- se voglio farlo funzionare devo mettere author_id --}}
 
-<textarea class="form-control" name="body" id="" cols="30" rows="10" placeholder="Inserisci il tuo post"></textarea>
+<textarea class="form-control" name="body" cols="30" rows="10" placeholder="Inserisci il tuo post"></textarea>
 <button type="submit">Invia</button>
 </form>
 @endsection

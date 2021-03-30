@@ -22,7 +22,7 @@ $selected = $post->tags->search(function($item,$key) use ($tag){
 </div>
 
 <div class="form-group">
-<label for="tags[]"></label>
+<label for="tags[]">Tags</label>
 <select name="tags[]" multiple>
 @foreach ($tags as $tag)
 <option value="{{$tag->id}}" {{count($post->tags->where('id',$tag->id))>0
