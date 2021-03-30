@@ -23,7 +23,7 @@ class CreateAuthorDetailsTable extends Migration
             $table->timestamps();
             $table->foreign('author_id')
             ->references('id')
-            ->on('authors');
+            ->on('authors')->onDelete('cascade');
         });
     }
 

@@ -23,6 +23,12 @@
             @endforeach</td>
            <td><a class="btn btn-primary" href="{{route('posts.show',compact('post'))}}">Show Comments</a></td>
            <td><a class="btn btn-success" href="{{route('posts.edit',compact('post'))}}">Edit post</a></td>
+           <td>
+            <form action="{{route('posts.destroy',compact('post'))}}" method="POST">
+                @csrf
+                @method('DELETE')
+            <button class="btn btn-danger" type="submit">Delete</button></form>
+            </td>
           </tr>
         @endforeach
 

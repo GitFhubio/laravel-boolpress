@@ -1,6 +1,10 @@
 @extends('layouts.app')
 @section('content')
-
+{{-- @php
+$selected = $post->tags->search(function($item,$key) use ($tag){
+    return $item->id==$tag->id;
+})
+@endphp --}}
 <form action="{{route('posts.update',compact('post'))}}" method="post">
     @csrf
     @method('PUT')
@@ -21,12 +25,7 @@
 <label for="tags[]"></label>
 <select name="tags[]" multiple>
 @foreach ($tags as $tag)
-<option value="{{$tag->id}}" {{
-
-count($post->tags->where('id',$tag->id))>0
-// $post->tags->search(function($item,$key){
-//     return $item->id==$tag->id;
-// })
+<option value="{{$tag->id}}" {{count($post->tags->where('id',$tag->id))>0
 ? 'selected=selected' : ""}}>{{$tag->name}}</option>
 @endforeach
 </select>
