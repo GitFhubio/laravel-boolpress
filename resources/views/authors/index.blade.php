@@ -18,8 +18,8 @@
             <td>{{$author->name}}</td>
             <td>{{$author->surname}}</td>
             <td>{{$author->email}}</td>
-            <td>{{$author->datail->bio}}</td>
-            <td>{{$author->detail}}</td>
+            <td>{{$author->detail->bio}}</td>
+            <td><img src="{{$author->detail->pic}}" alt=""></td>
            <td><a class="btn btn-primary" href="{{route('authors.show',compact('author'))}}">Show Author</a></td>
            <td><a class="btn btn-success" href="{{route('authors.edit',compact('author'))}}">Edit author</a></td>
            <td>
