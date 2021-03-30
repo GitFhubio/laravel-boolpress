@@ -43,7 +43,17 @@ class PostController extends Controller
         $post=new Post();
         $post->fill($data);
         $post->save();
-        $post->tags()->attach($data['tags']);
+        $tagsAll=Tag::all();
+        $autotags=$data['tags'];
+        // la modifica sotto serve per aggiungere tags anche se non li ho selezinati,
+        // semplicemente se sono nel body
+        foreach ($tagsAll as $tag) {
+        if(stripos($data['body'],$tag->name) !== false){
+          $autotags[]=$tag->id;
+        }
+    }
+        // $post->tags()->attach($data['tags']);
+        $post->tags()->attach($autotags);
         return redirect()->route('posts.show',compact('post'));
     }
 
