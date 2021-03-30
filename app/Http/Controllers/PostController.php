@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Post;
+use App\Author;
 class PostController extends Controller
 {
     /**
@@ -24,7 +25,8 @@ class PostController extends Controller
      */
     public function create()
     {
-    return view('posts.create');
+    $authors=Author::all();
+    return view('posts.create',compact('authors'));
     }
 
     /**
