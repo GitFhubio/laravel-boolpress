@@ -32,10 +32,13 @@ class PostController extends Controller
             $posts=Post::all();
         } else{
             $posts=Post::join('authors','posts.author_id','=','authors.id')
-            ->select('posts.*','authors.name','authors.surname')
+            ->join('post_tag','post_tag.post_id','=','posts.id')
+            ->join('tags','tags.id','=','post_tag.tag_id')
+            ->select('posts.*','authors.name','authors.surname','tags.name')
             ->where("title","like", '%'.$data["search"].'%')
             ->orWhere("body","like", '%'.$data["search"].'%')
-            ->orWhere("surname","like", '%'.$data["search"].'%')
+            ->orWhere("authors.surname","like", '%'.$data["search"].'%')
+            ->orWhere("tags.name","like", '%'.$data["search"].'%')
             ->get();
 
 
