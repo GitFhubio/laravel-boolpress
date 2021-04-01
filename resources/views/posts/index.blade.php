@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-
+{{-- <img src="{{asset('storage/KmaazrWhjkSC1cpT3Icf7sohIRUF0483jY3tvyuA.jpg')}}" alt=""> --}}
 <form action="{{route('posts.index')}}" method="GET">
 <input style="width:300px;" type="text" name="search" placeholder="Search post by title,body,author or tag">
 <button type="submit">Search post</button>
@@ -14,6 +14,7 @@
         <th scope="col">Body</th>
         <th scope="col">Author</th>
         <th scope="col">Tags</th>
+        <th scope="col">img</th>
         <th scope="col">Show</th>
       </tr>
     </thead>
@@ -27,9 +28,9 @@
             <td> @foreach ($post->tags as $tag)
             {{$tag->name}}
             @endforeach</td>
-           <td><a class="btn btn-primary" href="{{route('posts.show',compact('post'))}}">Show Comments</a></td>
-           <td><a class="btn btn-success" href="{{route('posts.edit',compact('post'))}}">Edit post</a></td>
-           <td>
+            <td><img style="width:80px;height:auto;" src="{{$post->img}}" alt=""></td>
+           <td><a class="btn btn-primary" href="{{route('posts.show',compact('post'))}}">Show Comments</a>
+           <a class="btn btn-success" href="{{route('posts.edit',compact('post'))}}">Edit post</a>
             <form action="{{route('posts.destroy',compact('post'))}}" method="POST">
                 @csrf
                 @method('DELETE')

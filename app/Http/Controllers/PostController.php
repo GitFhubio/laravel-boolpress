@@ -70,8 +70,8 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $data=$request->all();
-
-        //  dd($data);
+        $path=$request->file('image')->store('images');
+        // $newFileName = $request->file('image')->hashName();
         $author_id=$data['author_id'];
         $authors=Author::all();
         // Author::where('id',$author_id)->get();
@@ -85,6 +85,7 @@ class PostController extends Controller
 
         $post=new Post();
         $post->fill($data);
+        $post->img=$path;
         $post->save();
 
 

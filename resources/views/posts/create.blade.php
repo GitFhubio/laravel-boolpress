@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 
-<form action="{{route('posts.store')}}" method="post">
+<form action="{{route('posts.store')}}" method="post" enctype="multipart/form-data">
     @csrf
     @method('POST')
     <div class="form-group">
@@ -17,6 +17,10 @@
 <input type="text" name="title">
 </div>
 
+<div class="form group">
+<label for="image">Image</label>
+<input type="file" name="image" class="form-control" id="image">
+</div>
 <div class="form-group">
 <label for="tags[]">Tags</label>
 <select name="tags[]" multiple>
