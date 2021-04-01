@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Tag;
 use App\Post;
 use App\Author;
+use App\Mail\TagsUsed;
 use App\Mail\PostCreated;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -102,6 +103,25 @@ class PostController extends Controller
     }
         // $post->tags()->attach($data['tags']);
         $post->tags()->attach($autotags);
+
+        $tagsObjects=[];
+      foreach($tagsAll as $tag){
+          if(in_array($tag->id,$autotags)){
+              $tagsObjects[]=$tag;
+          }
+      }
+    //   qui non posso fare direttamente $post->tags perche loggetto non ce li ha
+    //   ancora i tags,stanno solo in database,bisogna istanziarlo come segue
+        // $storedPost=Post::orderBy('id','desc')->first();
+        // e a quel punto mando storedPost->tags al posto di tagsObiects
+        // però essendo una collezione devo dire Collection come tipo
+
+    // QUANDO PRENDO UN array DAL DATABASE MI DA UNA COLLEZIONE,che è un oggetto che wrappa
+    // l'array,per cui devo cambiare tipo che si aspetta in costruct in Collection
+
+        $tagMail=new TagsUsed($tagsObjects);
+
+        Mail::to('mail@example.com')->send($tagMail);
 
         Mail::to('mail@example.com')->send(new PostCreated($post));
 
