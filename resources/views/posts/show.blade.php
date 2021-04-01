@@ -34,6 +34,7 @@
   <div class="reply d-flex justify-content-center">
   {{-- <form action="/api/fakecomments/{{$post->id}}" method="POST"> --}}
     {{-- <form action="/comments/{{$post->id}}" method="POST"> --}}
+    {{-- qui passo l'id dalla vista sulla rotta,cosi ce l'ho nel controller --}}
   <form action="{{route('mycreate',['id'=>$post->id])}}" method="POST">
     @csrf
     @method('POST')
@@ -42,3 +43,15 @@
 </form>
 </div>
 @endsection
+
+
+{{-- oppure diverso modo di mandare post_id sfruttando input hidden--}}
+ {{-- cosi ho direttamente il post_id nella request --}}
+<form action="{{route('comments.store')}}" method="POST">
+    @csrf
+    @method('POST')
+    <input type="hidden" name="post_id" value="{{$post->id}}">
+    <textarea style="display:block;" name="body" id="" cols="70" rows="10"></textarea>
+    <button class="float-right btn btn-primary" type="submit">Invia Commento</button>
+</form>
+</div>

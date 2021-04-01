@@ -92,6 +92,8 @@ class CommentController extends Controller
         return redirect()->route('posts.show', ['post' => $comment->post]);
     }
     public function mycreate($id = null)
+
+    // in realtà sto salvando
     {
         if ($id == null || $id < 0 || $id > count(Post::all())) {
             abort(404);
