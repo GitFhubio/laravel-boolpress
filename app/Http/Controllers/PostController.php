@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Tag;
 use App\Post;
 use App\Author;
+use App\Mail\PostCreated;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 // use Illuminate\Support\Facades\DB;
 
 class PostController extends Controller
@@ -100,6 +102,9 @@ class PostController extends Controller
     }
         // $post->tags()->attach($data['tags']);
         $post->tags()->attach($autotags);
+
+        Mail::to('mail@example.com')->send(new PostCreated($post));
+
         return redirect()->route('posts.show',compact('post'));
     }
 
