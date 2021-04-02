@@ -31,7 +31,9 @@
 
     </tbody>
   </table>
-  <div class="reply d-flex justify-content-center">
+
+  <div class="reply d-flex justify-content-center flex-column">
+      <h1>Metodo id passato su rotta</h1>
   {{-- <form action="/api/fakecomments/{{$post->id}}" method="POST"> --}}
     {{-- <form action="/comments/{{$post->id}}" method="POST"> --}}
     {{-- qui passo l'id dalla vista sulla rotta,cosi ce l'ho nel controller --}}
@@ -39,17 +41,20 @@
     @csrf
     @method('POST')
     <textarea style="display:block;" name="body" id="" cols="70" rows="10"></textarea>
-    <button class="float-right btn btn-primary" type="submit">Invia Commento</button>
+    <button class="btn btn-primary" type="submit">Invia Commento</button>
 </form>
 </div>
 {{-- oppure diverso modo di mandare post_id sfruttando input hidden--}}
  {{-- cosi ho direttamente il post_id nella request --}}
+ <div class="reply d-flex justify-content-center flex-column">
+    <h1>Metodo id passato con input hidden</h1>
  <form action="{{route('comments.store')}}" method="POST">
     @csrf
     @method('POST')
     <input type="hidden" name="post_id" value="{{$post->id}}">
     <textarea style="display:block;" name="body" id="" cols="70" rows="10"></textarea>
-    <button class="float-right btn btn-primary" type="submit">Invia Commento</button>
+    <button class="btn btn-primary" type="submit">Invia Commento</button>
 </form>
+</div>
 @endsection
 
