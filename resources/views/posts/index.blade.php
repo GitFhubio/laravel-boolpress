@@ -28,7 +28,9 @@
             <td> @foreach ($post->tags as $tag)
             {{$tag->name}}
             @endforeach</td>
-            <td><img style="width:80px;height:auto;" src="{{$post->img}}" alt=""></td>
+            @if($post->img!= null)
+            <td><img style="width:80px;height:auto;" src="{{asset($post->img)}}" alt=""></td>
+            @endif
            <td><a class="btn btn-primary" href="{{route('posts.show',compact('post'))}}">Show Comments</a>
            <a class="btn btn-success" href="{{route('posts.edit',compact('post'))}}">Edit post</a>
             <form action="{{route('posts.destroy',compact('post'))}}" method="POST">
